@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.billboard.commons.exceptions.DataConversionException;
-import seedu.billboard.model.ReadOnlyBillboard;
+import seedu.billboard.model.ReadOnlyAddressBook;
 import seedu.billboard.model.ReadOnlyUserPrefs;
 import seedu.billboard.model.UserPrefs;
 
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getBillboardFilePath();
+    Path getAddressBookFilePath();
 
     @Override
-    Optional<ReadOnlyBillboard> readBillboard() throws DataConversionException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
 
     @Override
-    void saveBillboard(ReadOnlyBillboard addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
 }

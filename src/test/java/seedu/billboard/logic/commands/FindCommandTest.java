@@ -50,7 +50,7 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different expense -> returns false
+        // different person -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 

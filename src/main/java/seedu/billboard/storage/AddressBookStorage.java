@@ -5,42 +5,41 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.billboard.commons.exceptions.DataConversionException;
-import seedu.billboard.model.Billboard;
-import seedu.billboard.model.ReadOnlyBillboard;
+import seedu.billboard.model.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link Billboard}.
+ * Represents a storage for {@link seedu.billboard.model.AddressBook}.
  */
 public interface AddressBookStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getBillboardFilePath();
+    Path getAddressBookFilePath();
 
     /**
-     * Returns Billboard data as a {@link ReadOnlyBillboard}.
+     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyBillboard> readBillboard() throws DataConversionException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
 
     /**
-     * @see #getBillboardFilePath()
+     * @see #getAddressBookFilePath()
      */
-    Optional<ReadOnlyBillboard> readBillboard(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyBillboard} to the storage.
+     * Saves the given {@link ReadOnlyAddressBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveBillboard(ReadOnlyBillboard addressBook) throws IOException;
+    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     /**
-     * @see #saveBillboard(ReadOnlyBillboard)
+     * @see #saveAddressBook(ReadOnlyAddressBook)
      */
-    void saveBillboard(ReadOnlyBillboard addressBook, Path filePath) throws IOException;
+    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
 
 }

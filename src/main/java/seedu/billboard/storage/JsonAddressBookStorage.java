@@ -12,10 +12,10 @@ import seedu.billboard.commons.exceptions.DataConversionException;
 import seedu.billboard.commons.exceptions.IllegalValueException;
 import seedu.billboard.commons.util.FileUtil;
 import seedu.billboard.commons.util.JsonUtil;
-import seedu.billboard.model.ReadOnlyBillboard;
+import seedu.billboard.model.ReadOnlyAddressBook;
 
 /**
- * A class to access Billboard data stored as a json file on the hard disk.
+ * A class to access AddressBook data stored as a json file on the hard disk.
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
@@ -27,22 +27,22 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         this.filePath = filePath;
     }
 
-    public Path getBillboardFilePath() {
+    public Path getAddressBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyBillboard> readBillboard() throws DataConversionException {
-        return readBillboard(filePath);
+    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException {
+        return readAddressBook(filePath);
     }
 
     /**
-     * Similar to {@link #readBillboard()}.
+     * Similar to {@link #readAddressBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyBillboard> readBillboard(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveBillboard(ReadOnlyBillboard addressBook) throws IOException {
-        saveBillboard(addressBook, filePath);
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        saveAddressBook(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveBillboard(ReadOnlyBillboard)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveBillboard(ReadOnlyBillboard addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

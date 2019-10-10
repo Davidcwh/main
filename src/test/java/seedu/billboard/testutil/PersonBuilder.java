@@ -3,13 +3,16 @@ package seedu.billboard.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.billboard.model.person.*;
-import seedu.billboard.model.person.Expense;
+import seedu.billboard.model.person.Address;
+import seedu.billboard.model.person.Email;
+import seedu.billboard.model.person.Name;
+import seedu.billboard.model.person.Person;
+import seedu.billboard.model.person.Phone;
 import seedu.billboard.model.tag.Tag;
 import seedu.billboard.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Expense objects.
+ * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
 
@@ -33,18 +36,18 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code expenseToCopy}.
+     * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Expense expenseToCopy) {
-        name = expenseToCopy.getName();
-        phone = expenseToCopy.getPhone();
-        email = expenseToCopy.getEmail();
-        address = expenseToCopy.getAddress();
-        tags = new HashSet<>(expenseToCopy.getTags());
+    public PersonBuilder(Person personToCopy) {
+        name = personToCopy.getName();
+        phone = personToCopy.getPhone();
+        email = personToCopy.getEmail();
+        address = personToCopy.getAddress();
+        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Expense} that we are building.
+     * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
@@ -52,7 +55,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Expense} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -60,7 +63,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Expense} that we are building.
+     * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -68,7 +71,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Expense} that we are building.
+     * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -76,15 +79,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Expense} that we are building.
+     * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
 
-    public Expense build() {
-        return new Expense(name, phone, email, address, tags);
+    public Person build() {
+        return new Person(name, phone, email, address, tags);
     }
 
 }

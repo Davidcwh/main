@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.billboard.commons.core.GuiSettings;
-import seedu.billboard.model.Billboard;
-import seedu.billboard.model.ReadOnlyBillboard;
+import seedu.billboard.model.AddressBook;
+import seedu.billboard.model.ReadOnlyAddressBook;
 import seedu.billboard.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -54,15 +54,15 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        Billboard original = getTypicalAddressBook();
-        storageManager.saveBillboard(original);
-        ReadOnlyBillboard retrieved = storageManager.readBillboard().get();
-        assertEquals(original, new Billboard(retrieved));
+        AddressBook original = getTypicalAddressBook();
+        storageManager.saveAddressBook(original);
+        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new AddressBook(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getBillboardFilePath());
+        assertNotNull(storageManager.getAddressBookFilePath());
     }
 
 }

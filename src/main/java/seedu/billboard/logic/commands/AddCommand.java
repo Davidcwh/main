@@ -1,57 +1,49 @@
 package seedu.billboard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.billboard.logic.parser.CliSyntax.*;
-
+import static seedu.billboard.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.billboard.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.billboard.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.billboard.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.billboard.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.billboard.logic.commands.exceptions.CommandException;
 import seedu.billboard.model.Model;
-import seedu.billboard.model.person.Expense;
+import seedu.billboard.model.person.Person;
 
 /**
- * Adds a expense to the address book.
+ * Adds a person to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-//    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a expense to the address book. "
-//            + "Parameters: "
-//            + PREFIX_NAME + "NAME "
-//            + PREFIX_PHONE + "PHONE "
-//            + PREFIX_EMAIL + "EMAIL "
-//            + PREFIX_ADDRESS + "ADDRESS "
-//            + "[" + PREFIX_TAG + "TAG]...\n"
-//            + "Example: " + COMMAND_WORD + " "
-//            + PREFIX_NAME + "John Doe "
-//            + PREFIX_PHONE + "98765432 "
-//            + PREFIX_EMAIL + "johnd@example.com "
-//            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-//            + PREFIX_TAG + "friends "
-//            + PREFIX_TAG + "owesMoney";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a expense to the billboard. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_AMOUNT + "AMOUNT "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DESCRIPTION + "Buy a book "
-            + PREFIX_AMOUNT + "9.00"
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";;
+            + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New expense added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This expense already exists in the billboard";
+    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private final Expense toAdd;
+    private final Person toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Expense}
+     * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Expense expense) {
-        requireNonNull(expense);
-        toAdd = expense;
+    public AddCommand(Person person) {
+        requireNonNull(person);
+        toAdd = person;
     }
 
     @Override

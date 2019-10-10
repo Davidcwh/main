@@ -10,11 +10,11 @@ import seedu.billboard.commons.core.LogsCenter;
 import seedu.billboard.logic.commands.Command;
 import seedu.billboard.logic.commands.CommandResult;
 import seedu.billboard.logic.commands.exceptions.CommandException;
-import seedu.billboard.logic.parser.BillboardParser;
+import seedu.billboard.logic.parser.AddressBookParser;
 import seedu.billboard.logic.parser.exceptions.ParseException;
 import seedu.billboard.model.Model;
-import seedu.billboard.model.ReadOnlyBillboard;
-import seedu.billboard.model.person.Expense;
+import seedu.billboard.model.ReadOnlyAddressBook;
+import seedu.billboard.model.person.Person;
 import seedu.billboard.storage.Storage;
 
 /**
@@ -26,12 +26,12 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final BillboardParser billboardParser;
+    private final AddressBookParser addressBookParser;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        billboardParser = new BillboardParser();
+        addressBookParser = new AddressBookParser();
     }
 
     @Override
@@ -39,11 +39,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = billboardParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveBillboard(model.getBillboard());
+            storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -52,12 +52,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyBillboard getAddressBook() {
-        return model.getBillboard();
+    public ReadOnlyAddressBook getAddressBook() {
+        return model.getAddressBook();
     }
 
     @Override
-    public ObservableList<Expense> getFilteredPersonList() {
+    public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
 

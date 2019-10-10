@@ -7,12 +7,12 @@ import java.util.logging.Logger;
 
 import seedu.billboard.commons.core.LogsCenter;
 import seedu.billboard.commons.exceptions.DataConversionException;
-import seedu.billboard.model.ReadOnlyBillboard;
+import seedu.billboard.model.ReadOnlyAddressBook;
 import seedu.billboard.model.ReadOnlyUserPrefs;
 import seedu.billboard.model.UserPrefs;
 
 /**
- * Manages storage of Billboard data in local storage.
+ * Manages storage of AddressBook data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -45,33 +45,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ Billboard methods ==============================
+    // ================ AddressBook methods ==============================
 
     @Override
-    public Path getBillboardFilePath() {
-        return addressBookStorage.getBillboardFilePath();
+    public Path getAddressBookFilePath() {
+        return addressBookStorage.getAddressBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyBillboard> readBillboard() throws DataConversionException, IOException {
-        return readBillboard(addressBookStorage.getBillboardFilePath());
+    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
+        return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyBillboard> readBillboard(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readBillboard(filePath);
+        return addressBookStorage.readAddressBook(filePath);
     }
 
     @Override
-    public void saveBillboard(ReadOnlyBillboard addressBook) throws IOException {
-        saveBillboard(addressBook, addressBookStorage.getBillboardFilePath());
+    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
+        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
 
     @Override
-    public void saveBillboard(ReadOnlyBillboard addressBook, Path filePath) throws IOException {
+    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveBillboard(addressBook, filePath);
+        addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
 }
